@@ -53,7 +53,7 @@ Add the MongoDB connection string to your backend environment variables.
 ```env
 PORT=5001
 NODE_ENV=production
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/realestategames?retryWrites=true&w=majority
+MONGODB_URI=mongodb+srv://[username]:[password]@[cluster].mongodb.net/realestategames?retryWrites=true&w=majority
 JWT_SECRET=your_jwt_secret_here
 ```
 
