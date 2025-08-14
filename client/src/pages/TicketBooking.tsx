@@ -101,11 +101,43 @@ const TicketBooking: React.FC = () => {
   const onSubmit = async (data: TicketFormData) => {
     setIsSubmitting(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Prepare ticket data for backend
+      const ticketData = {
+        customerName: data.fullName,
+        customerEmail: data.email,
+        customerPhone: data.phone,
+        ticketType: 'Standard', // Default to Standard for free tickets
+        ticketPrice: 0, // Free ticket
+        quantity: 1,
+        eventDate: '2025-10-19', // Fixed event date
+        eventTime: '9:00 AM',
+        venue: 'Real Estate Games Venue',
+        paymentMethod: 'free',
+        specialRequests: data.comments || '',
+        dietaryRestrictions: []
+      };
+
+      // Call backend API
+      const response = await fetch('/api/tickets', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(ticketData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to book ticket');
+      }
+
+      const result = await response.json();
       setIsSuccess(true);
-      toast.success('Ticket booked successfully!');
+      toast.success('Ticket booked successfully! Check your email for confirmation.');
+      
+      // Store ticket data for display
+      localStorage.setItem('ticketData', JSON.stringify(result.ticket));
     } catch (error) {
+      console.error('Ticket booking error:', error);
       toast.error('Failed to book ticket. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -113,6 +145,10 @@ const TicketBooking: React.FC = () => {
   };
 
   if (isSuccess) {
+    // Get ticket data from localStorage
+    const ticketDataString = localStorage.getItem('ticketData');
+    const ticketData = ticketDataString ? JSON.parse(ticketDataString) : null;
+
     return (
       <TicketBookingContainer>
         <Container>
@@ -164,21 +200,23 @@ const TicketBooking: React.FC = () => {
             }}>
               <div>
                 <div style={{ color: 'var(--gray)', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Name</div>
-                <div style={{ color: 'var(--white)', fontWeight: '600' }}>{watchedValues.fullName}</div>
+                <div style={{ color: 'var(--white)', fontWeight: '600' }}>{ticketData?.customerName || watchedValues.fullName}</div>
               </div>
               <div>
                 <div style={{ color: 'var(--gray)', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Email</div>
-                <div style={{ color: 'var(--white)', fontWeight: '600' }}>{watchedValues.email}</div>
+                <div style={{ color: 'var(--white)', fontWeight: '600' }}>{ticketData?.customerEmail || watchedValues.email}</div>
               </div>
               <div>
                 <div style={{ color: 'var(--gray)', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Attendee Type</div>
                 <div style={{ color: 'var(--white)', fontWeight: '600' }}>
-                  {watchedValues.attendeeType === 'Others' ? watchedValues.otherAttendeeType : watchedValues.attendeeType}
+                  {ticketData?.ticketType || (watchedValues.attendeeType === 'Others' ? watchedValues.otherAttendeeType : watchedValues.attendeeType)}
                 </div>
               </div>
               <div>
                 <div style={{ color: 'var(--gray)', fontSize: '0.875rem', marginBottom: '0.25rem' }}>Attendance</div>
-                <div style={{ color: 'var(--white)', fontWeight: '600' }}>{watchedValues.attendanceDays?.join(', ')}</div>
+                <div style={{ color: 'var(--white)', fontWeight: '600' }}>
+                  {ticketData ? new Date(ticketData.eventDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : watchedValues.attendanceDays?.join(', ')}
+                </div>
               </div>
             </div>
 
@@ -206,7 +244,7 @@ const TicketBooking: React.FC = () => {
                 fontWeight: '600', 
                 fontFamily: 'monospace' 
               }}>
-                REG{Date.now().toString().slice(-6)}
+                {ticketData?.ticketNumber || `REG${Date.now().toString().slice(-6)}`}
               </div>
               <p style={{ color: 'var(--gray)', fontSize: '0.875rem', marginTop: '0.5rem' }}>
                 Present this ticket at the entrance

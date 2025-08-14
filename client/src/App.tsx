@@ -11,6 +11,8 @@ import Sponsorship from './pages/Sponsorship';
 import Contact from './pages/Contact';
 import Team from './pages/Team';
 import Events from './pages/Events';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
 
 const App: React.FC = () => {
   return (
@@ -21,20 +23,85 @@ const App: React.FC = () => {
       </Helmet>
       
       <div className="App">
-        <Navbar />
-        <main>
-                  <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/ticket-booking" element={<TicketBooking />} />
-          <Route path="/sponsorship" element={<Sponsorship />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/events" element={<Events />} />
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={
+            <>
+              <Navbar />
+              <main>
+                <Home />
+              </main>
+              <Footer />
+            </>
+          } />
+          <Route path="/about" element={
+            <>
+              <Navbar />
+              <main>
+                <About />
+              </main>
+              <Footer />
+            </>
+          } />
+          <Route path="/registration" element={
+            <>
+              <Navbar />
+              <main>
+                <Registration />
+              </main>
+              <Footer />
+            </>
+          } />
+          <Route path="/ticket-booking" element={
+            <>
+              <Navbar />
+              <main>
+                <TicketBooking />
+              </main>
+              <Footer />
+            </>
+          } />
+          <Route path="/sponsorship" element={
+            <>
+              <Navbar />
+              <main>
+                <Sponsorship />
+              </main>
+              <Footer />
+            </>
+          } />
+          <Route path="/contact" element={
+            <>
+              <Navbar />
+              <main>
+                <Contact />
+              </main>
+              <Footer />
+            </>
+          } />
+          <Route path="/team" element={
+            <>
+              <Navbar />
+              <main>
+                <Team />
+              </main>
+              <Footer />
+            </>
+          } />
+          <Route path="/events" element={
+            <>
+              <Navbar />
+              <main>
+                <Events />
+              </main>
+              <Footer />
+            </>
+          } />
+          
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Routes>
-        </main>
-        <Footer />
       </div>
     </>
   );

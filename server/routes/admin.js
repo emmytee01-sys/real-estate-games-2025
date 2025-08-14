@@ -4,11 +4,11 @@ const Registration = require('../models/Registration');
 const { authenticateAdmin } = require('../middleware/auth');
 // const { sendStatusUpdate } = require('../services/emailService');
 
-// Apply admin authentication to all routes
-router.use(authenticateAdmin);
+// Apply admin authentication to specific routes only
+// router.use(authenticateAdmin); // Removed global middleware
 
 // Get dashboard statistics
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', authenticateAdmin, async (req, res) => {
   try {
     const [
       totalRegistrations,
@@ -58,7 +58,7 @@ router.get('/dashboard', async (req, res) => {
 });
 
 // Get all registrations with advanced filtering
-router.get('/registrations', async (req, res) => {
+router.get('/registrations', authenticateAdmin, async (req, res) => {
   try {
     const { 
       page = 1, 

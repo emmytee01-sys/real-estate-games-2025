@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
-import { Menu, X, Heart } from 'lucide-react';
+import { Menu, X, Heart, Shield } from 'lucide-react';
 
 const NavContainer = styled(motion.nav)`
   position: fixed;
@@ -100,6 +100,21 @@ const CTAButton = styled(Link)`
   }
 `;
 
+const AdminLink = styled(Link)`
+  color: var(--gray);
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    color: var(--primary-green);
+    background: rgba(0, 255, 136, 0.1);
+  }
+`;
+
 const MobileMenuButton = styled.button`
   display: none;
   background: none;
@@ -193,6 +208,9 @@ const Navbar: React.FC = () => {
             </NavLink>
           ))}
           <CTAButton to="/registration">Register Now</CTAButton>
+          <AdminLink to="/admin/login" title="Admin Panel">
+            <Shield size={20} />
+          </AdminLink>
         </NavLinks>
 
         <MobileMenuButton

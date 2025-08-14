@@ -10,4 +10,18 @@ services:
       - key: PORT
         value: 10000
       - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_URL
+        value: https://dev-realestategames.web.app
+      - key: SERVER_URL
+        sync: false
+      - key: EMAIL_SERVICE
+        value: gmail
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: ADMIN_EMAIL
         sync: false 

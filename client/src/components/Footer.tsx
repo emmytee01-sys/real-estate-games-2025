@@ -11,7 +11,8 @@ import {
   Facebook, 
   Twitter, 
   Linkedin,
-  ArrowUp
+  ArrowUp,
+  Shield
 } from 'lucide-react';
 
 const FooterContainer = styled.footer`
@@ -215,6 +216,22 @@ const ScrollToTop = styled(motion.button)`
   }
 `;
 
+const AdminLink = styled(Link)`
+  color: var(--gray);
+  text-decoration: none;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+  opacity: 0.7;
+  
+  &:hover {
+    color: var(--primary-green);
+    opacity: 1;
+  }
+`;
+
 const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -311,10 +328,17 @@ const Footer: React.FC = () => {
         </FooterGrid>
 
         <FooterBottom>
-          <Copyright>
-            <Heart className="heart-icon" size={16} />
-            <span>© 2025 Marygold Production. All rights reserved.</span>
-          </Copyright>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+            <Copyright>
+              <Heart className="heart-icon" size={16} />
+              <span>© 2025 Marygold Production. All rights reserved.</span>
+            </Copyright>
+            
+            <AdminLink to="/admin/login" title="Admin Panel">
+              <Shield size={14} />
+              Admin
+            </AdminLink>
+          </div>
           
           <ScrollToTop
             onClick={scrollToTop}

@@ -173,6 +173,22 @@ const registrationSchema = new mongoose.Schema({
   adminNotes: {
     type: String,
     trim: true
+  },
+
+  // Admin Management Fields
+  confirmedAt: {
+    type: Date
+  },
+  confirmedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Admin'
+  },
+  rejectedAt: {
+    type: Date
+  },
+  rejectedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Admin'
   }
 }, {
   timestamps: true
