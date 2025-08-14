@@ -1,0 +1,19 @@
+{
+  "projects": {
+    "default": "realestate-games",
+    "staging": "realestate-games"
+  },
+  "targets": {
+    "realestate-games": {
+      "hosting": {
+        "dev-realestategames": [
+          "dev-realestategames"
+        ],
+        "realestate-games": [
+          "realestate-games"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
