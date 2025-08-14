@@ -19,7 +19,7 @@ async function createProductionAdmin() {
     }
 
     // Create new admin user
-    const hashedPassword = await bcrypt.hash('RealEstateGames2025!', 12);
+    const hashedPassword = await bcrypt.hash('admin@mary123', 12);
     
     const newAdmin = new Admin({
       username: 'admin',
@@ -32,7 +32,7 @@ async function createProductionAdmin() {
     await newAdmin.save();
     console.log('✅ Production admin user created successfully!');
     console.log('📧 Email: realestategames2025@gmail.com');
-    console.log('🔑 Password: RealEstateGames2025!');
+    console.log('🔑 Password:admin@mary123');
     console.log('⚠️ Please change this password after first login!');
     
   } catch (error) {
