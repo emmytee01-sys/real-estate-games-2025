@@ -12,7 +12,7 @@ async function createProductionAdmin() {
     console.log('✅ Connected to MongoDB');
 
     // Check if admin already exists
-    const existingAdmin = await Admin.findOne({ email: 'realestategames2025@gmail.com' });
+    const existingAdmin = await Admin.findOne({ email: 'admin@realestategames.com' });
     if (existingAdmin) {
       console.log('⚠️ Admin user already exists');
       return;
@@ -23,7 +23,7 @@ async function createProductionAdmin() {
     
     const newAdmin = new Admin({
       username: 'admin',
-      email: 'realestategames2025@gmail.com',
+      email: 'admin@realestategames.com',
       password: hashedPassword,
       role: 'super_admin',
       isActive: true
