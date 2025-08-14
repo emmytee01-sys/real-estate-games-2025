@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { toast } from 'react-hot-toast';
 import { Eye, EyeOff, Lock, Mail, Shield } from 'lucide-react';
+import { API_ENDPOINTS } from '../config/api';
 
 const AdminLoginContainer = styled.div`
   min-height: 100vh;
@@ -148,7 +149,7 @@ const AdminLogin: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/admin/auth/login', {
+      const response = await fetch(API_ENDPOINTS.ADMIN_LOGIN, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

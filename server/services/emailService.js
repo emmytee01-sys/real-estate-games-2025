@@ -93,6 +93,37 @@ const emailTemplates = {
       </div>
     `
   }),
+
+  ticketAdminNotification: (data) => ({
+    subject: 'New Ticket Booking - Real Estate Games 2025',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="background: #3b82f6; padding: 20px; text-align: center; color: white;">
+          <h1>🎫 New Ticket Booking Alert</h1>
+        </div>
+        
+        <div style="padding: 20px; background: #f9f9f9;">
+          <h2>New Individual Ticket Booking</h2>
+          
+          <div style="background: white; padding: 15px; margin: 20px 0; border-radius: 8px;">
+            <h3>Ticket Information:</h3>
+            <p><strong>Ticket Number:</strong> ${data.ticketNumber}</p>
+            <p><strong>Customer Name:</strong> ${data.customerName}</p>
+            <p><strong>Email:</strong> ${data.customerEmail}</p>
+            <p><strong>Phone:</strong> ${data.customerPhone}</p>
+            <p><strong>Ticket Type:</strong> ${data.ticketType}</p>
+            <p><strong>Amount:</strong> ₦${data.totalAmount?.toLocaleString() || '0'}</p>
+            <p><strong>Payment Status:</strong> ${data.paymentStatus}</p>
+            <p><strong>Event Date:</strong> ${new Date(data.eventDate).toLocaleDateString()}</p>
+            <p><strong>Event Time:</strong> ${data.eventTime}</p>
+            <p><strong>Venue:</strong> ${data.venue}</p>
+          </div>
+          
+          <p>This ticket has been automatically confirmed and the customer has been notified.</p>
+        </div>
+      </div>
+    `
+  }),
   
   statusUpdate: (data) => ({
     subject: `Registration ${data.status} - Real Estate Games 2025`,
@@ -492,17 +523,18 @@ const sendTicketConfirmation = async (ticket) => {
     if (process.env.ADMIN_EMAIL) {
       await sendEmail(
         process.env.ADMIN_EMAIL,
-        'adminNotification',
+        'ticketAdminNotification',
         {
-          companyName: `Ticket Booking - ${ticket.ticketNumber}`,
-          contactPerson: {
-            name: ticket.customerName,
-            email: ticket.customerEmail,
-            phone: ticket.customerPhone
-          },
-          applicationPackage: ticket.ticketType,
-          packagePrice: ticket.totalAmount,
-          paymentStatus: ticket.paymentStatus
+          ticketNumber: ticket.ticketNumber || ticket._id,
+          customerName: ticket.customerName,
+          customerEmail: ticket.customerEmail,
+          customerPhone: ticket.customerPhone,
+          ticketType: ticket.ticketType,
+          totalAmount: ticket.totalAmount,
+          paymentStatus: ticket.paymentStatus,
+          eventDate: ticket.eventDate,
+          eventTime: ticket.eventTime,
+          venue: ticket.venue
         }
       );
     }

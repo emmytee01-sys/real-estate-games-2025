@@ -107,4 +107,41 @@ router.post('/logout', verifyAdminToken, async (req, res) => {
   }
 });
 
+// Temporary admin creation endpoint (remove in production)
+router.post('/create-admin', async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    
+    // Check if admin already exists
+    const existingAdmin = await Admin.findOne({ $or: [{ username }, { email }] });
+    if (existingAdmin) {
+      return res.status(400).json({ message: 'Admin already exists.' });
+    }
+
+    // Create new admin
+    const admin = new Admin({
+      username,
+      email,
+      password,
+      role: 'admin',
+      isActive: true
+    });
+
+    await admin.save();
+
+    res.json({
+      message: 'Admin created successfully',
+      admin: {
+        id: admin._id,
+        username: admin.username,
+        email: admin.email,
+        role: admin.role
+      }
+    });
+  } catch (error) {
+    console.error('Create admin error:', error);
+    res.status(500).json({ message: 'Server error.' });
+  }
+});
+
 module.exports = { router, verifyAdminToken }; 

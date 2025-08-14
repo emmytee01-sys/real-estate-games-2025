@@ -10,6 +10,9 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+// Trust proxy for rate limiting
+app.set('trust proxy', 1);
+
 // Middleware
 app.use(helmet());
 app.use(compression());
@@ -54,7 +57,6 @@ app.use('/api/contact', require('./routes/contact'));
 app.use('/api/admin', require('./routes/admin'));
 app.use('/api/admin/auth', require('./routes/adminAuth').router);
 app.use('/api/admin/dashboard', require('./routes/adminDashboard'));
-app.use('/api/admin/setup', require('./routes/adminSetup'));
 app.use('/api/upload', require('./routes/upload'));
 app.use('/api/tickets', require('./routes/tickets'));
 

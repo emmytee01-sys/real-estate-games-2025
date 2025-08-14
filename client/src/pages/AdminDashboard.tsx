@@ -9,6 +9,7 @@ import {
   LogOut,
   Eye
 } from 'lucide-react';
+import { API_ENDPOINTS } from '../config/api';
 
 const DashboardContainer = styled.div`
   min-height: 100vh;
@@ -303,13 +304,13 @@ const AdminDashboard: React.FC = () => {
   const loadDashboardData = async () => {
     try {
       const [statsRes, companiesRes, ticketsRes] = await Promise.all([
-        fetch('/api/admin/dashboard/stats', {
+        fetch(API_ENDPOINTS.DASHBOARD_STATS, {
           headers: { Authorization: `Bearer ${adminToken}` }
         }),
-        fetch('/api/admin/dashboard/companies', {
+        fetch(API_ENDPOINTS.DASHBOARD_COMPANIES, {
           headers: { Authorization: `Bearer ${adminToken}` }
         }),
-        fetch('/api/admin/dashboard/tickets', {
+        fetch(API_ENDPOINTS.DASHBOARD_TICKETS, {
           headers: { Authorization: `Bearer ${adminToken}` }
         })
       ]);
@@ -330,7 +331,7 @@ const AdminDashboard: React.FC = () => {
 
   const handleApprovePayment = async (companyId: string) => {
     try {
-      const response = await fetch(`/api/admin/dashboard/companies/${companyId}/approve-payment`, {
+      const response = await fetch(`${API_ENDPOINTS.DASHBOARD_APPROVE_PAYMENT}/${companyId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -352,7 +353,7 @@ const AdminDashboard: React.FC = () => {
 
   const handleRejectPayment = async (companyId: string) => {
     try {
-      const response = await fetch(`/api/admin/dashboard/companies/${companyId}/reject-payment`, {
+      const response = await fetch(`${API_ENDPOINTS.DASHBOARD_REJECT_PAYMENT}/${companyId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -380,7 +381,7 @@ const AdminDashboard: React.FC = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch(`/api/admin/dashboard/tickets/number/${ticketNumber.trim()}`, {
+      const response = await fetch(`${API_ENDPOINTS.DASHBOARD_TICKET_BY_NUMBER}/${ticketNumber.trim()}`, {
         headers: { Authorization: `Bearer ${adminToken}` }
       });
 
@@ -404,7 +405,7 @@ const AdminDashboard: React.FC = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch('/api/admin/dashboard/tickets/checkin', {
+      const response = await fetch(API_ENDPOINTS.DASHBOARD_CHECKIN_TICKET, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -447,7 +448,7 @@ const AdminDashboard: React.FC = () => {
     }
 
     try {
-      const response = await fetch(`/api/admin/dashboard/tickets/number/${searchTerm.trim()}`, {
+      const response = await fetch(`${API_ENDPOINTS.DASHBOARD_TICKET_BY_NUMBER}/${searchTerm.trim()}`, {
         headers: { Authorization: `Bearer ${adminToken}` }
       });
 
