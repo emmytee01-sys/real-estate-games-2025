@@ -17,7 +17,13 @@ app.set('trust proxy', 1);
 app.use(helmet());
 app.use(compression());
 app.use(cors({
-  origin: ['http://localhost:3001', 'http://127.0.0.1:3001'],
+  origin: [
+    'http://localhost:3001', 
+    'http://127.0.0.1:3001',
+    'https://dev-realestategames.web.app',
+    'https://realestate-games.web.app',
+    'https://realestategames.web.app'
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
