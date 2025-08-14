@@ -54,6 +54,7 @@ app.use('/api/contact', require('./routes/contact'));
 app.use('/api/admin', require('./routes/admin'));
 app.use('/api/admin/auth', require('./routes/adminAuth').router);
 app.use('/api/admin/dashboard', require('./routes/adminDashboard'));
+app.use('/api/admin/setup', require('./routes/adminSetup'));
 app.use('/api/upload', require('./routes/upload'));
 app.use('/api/tickets', require('./routes/tickets'));
 
