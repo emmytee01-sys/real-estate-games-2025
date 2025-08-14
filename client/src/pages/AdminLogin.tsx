@@ -243,20 +243,6 @@ const AdminLogin: React.FC = () => {
             )}
           </Button>
         </Form>
-
-                  <div style={{ 
-            textAlign: 'center', 
-            marginTop: '2rem', 
-            padding: '1rem',
-            background: 'rgba(255, 255, 255, 0.05)',
-            borderRadius: '10px',
-            fontSize: '0.8rem',
-            color: 'var(--gray)'
-          }}>
-            <strong>Default Admin Credentials:</strong><br />
-            Username/Email: admin@realestategames.com<br />
-            Password: admin123
-          </div>
       </LoginCard>
     </AdminLoginContainer>
   );
