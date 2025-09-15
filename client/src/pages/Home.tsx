@@ -357,7 +357,7 @@ const Home: React.FC = () => {
     {
       icon: <Calendar size={32} />,
       value: "17th & 18th",
-      label: "October 2025"
+      label: "24th & 25th October 2025"
     },
     {
       icon: <MapPin size={32} />,

@@ -457,10 +457,8 @@ const Registration: React.FC = () => {
   const sports = [
     'Football',
     'Athletics',
-    'Tug of War',
-    'Basketball',
-    'Volleyball',
-    'Table Tennis'
+    'Match Pass',
+    'Tug of War'
   ];
 
   const handlePackageSelect = (packageData: {

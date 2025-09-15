@@ -452,7 +452,7 @@ const About: React.FC = () => {
   ];
 
   const eventDetails = [
-    { icon: <Calendar size={24} />, label: "Date", value: "October 2025" },
+    { icon: <Calendar size={24} />, label: "Date", value: "24th & 25th October 2025" },
     { icon: <MapPin size={24} />, label: "Venue", value: "Mobolaji Johnson Arena, Onikan, Lagos, Nigeria" },
     { icon: <Users size={24} />, label: "Participants", value: "500+ Professionals" },
     { icon: <Trophy size={24} />, label: "Duration", value: "2 Days" },

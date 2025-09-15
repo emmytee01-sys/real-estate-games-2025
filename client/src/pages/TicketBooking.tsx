@@ -109,7 +109,7 @@ const TicketBooking: React.FC = () => {
         ticketType: 'Standard', // Default to Standard for free tickets
         ticketPrice: 0, // Free ticket
         quantity: 1,
-        eventDate: '2025-10-19', // Fixed event date
+        eventDate: '2025-10-25', // Fixed event date
         eventTime: '9:00 AM',
         venue: 'Real Estate Games Venue',
         paymentMethod: 'free',

@@ -196,19 +196,14 @@ const Events: React.FC = () => {
       description: "Track and field events including sprints and relays"
     },
     {
+      icon: "🎭",
+      title: "Match Pass",
+      description: "Special tribute and recognition ceremony for distinguished dignitaries"
+    },
+    {
       icon: "🔄",
       title: "Tug of War",
       description: "Team strength and coordination competition"
-    },
-    {
-      icon: "🏀",
-      title: "Basketball",
-      description: "Fast-paced basketball tournaments"
-    },
-    {
-      icon: "🎾",
-      title: "Table Tennis",
-      description: "Individual and team table tennis competitions"
     },
     {
       icon: "🏆",
@@ -253,13 +248,13 @@ const Events: React.FC = () => {
   const day2Schedule = [
     {
       time: "9:00 AM",
-      title: "Basketball Tournament",
-      description: "Basketball quarter-finals and semi-finals"
+      title: "Match Pass Ceremony",
+      description: "Special tribute and recognition ceremony for distinguished dignitaries"
     },
     {
       time: "11:00 AM",
-      title: "Table Tennis",
-      description: "Individual and team table tennis"
+      title: "Athletics Finals",
+      description: "Final track and field competitions"
     },
     {
       time: "2:00 PM",
@@ -364,7 +359,7 @@ const Events: React.FC = () => {
           <ScheduleSection>
             <ScheduleGrid>
               <DaySchedule>
-                <h3>Day 1 - October 17th, 2025</h3>
+                <h3>Day 1 - October 24th, 2025</h3>
                 {day1Schedule.map((event, index) => (
                   <motion.div
                     key={index}
@@ -382,7 +377,7 @@ const Events: React.FC = () => {
               </DaySchedule>
               
               <DaySchedule>
-                <h3>Day 2 - October 18th, 2025</h3>
+                <h3>Day 2 - October 25th, 2025</h3>
                 {day2Schedule.map((event, index) => (
                   <motion.div
                     key={index}

@@ -7,7 +7,7 @@ A dynamic, modern website for "The Real Estate Games" - a first-of-its-kind inte
 The Real Estate Games is a unique, high-energy event designed to bring together top real estate companies in a dynamic and engaging competition. The event combines fun, fitness, strategy, and networking, allowing participating brands to showcase their team spirit, leadership, and creativity in a relaxed, non-corporate environment.
 
 **Event Details:**
-- **Date:** 17th & 18th October 2025
+- **Date:** 24th & 25th October 2025
 - **Venue:** Mobolaji Johnson Stadium (Onikan)
 - **Theme:** "Beyond The Game" - Promoting wellness, networking, and unity
 - **Expected Participants:** 16 Real Estate Companies

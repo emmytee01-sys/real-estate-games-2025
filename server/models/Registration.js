@@ -85,7 +85,7 @@ const registrationSchema = new mongoose.Schema({
   // Sports Preferences
   preferredSports: [{
     type: String,
-    enum: ['Football', 'Athletics', 'Tug of War', 'Basketball', 'Volleyball', 'Table Tennis']
+    enum: ['Football', 'Athletics', 'Match Pass', 'Tug of War']
   }],
 
   // Additional Information
