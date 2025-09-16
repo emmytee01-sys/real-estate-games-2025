@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import styled from 'styled-components';
-import { Heart } from 'lucide-react';
 
 const TeamContainer = styled.div`
   min-height: 100vh;
@@ -102,12 +101,6 @@ const Team: React.FC = () => {
       position: "Director of Corporate Communications",
       avatar: "VA",
       description: "Managing all corporate communications and public relations for the event."
-    },
-    {
-      name: "Oladapo Emmanuel",
-      position: "Director of Sports",
-      avatar: "OE",
-      description: "Overseeing all sports activities and ensuring fair competition standards."
     },
     {
       name: "Okeowo Bolarinwa",

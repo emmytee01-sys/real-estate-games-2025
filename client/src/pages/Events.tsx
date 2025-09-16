@@ -289,7 +289,7 @@ const Events: React.FC = () => {
     {
       icon: "💰",
       title: "Cash Prize",
-      value: "10M Naira",
+      value: "5M Naira",
       description: "Substantial cash prize pool for winning teams"
     },
     {

@@ -191,7 +191,7 @@ const PackageSelection: React.FC<PackageSelectionProps> = ({ onPackageSelect }) 
       ],
       prizes: [
         'Golden Medals 🏅',
-        '₦2,000,000 Cash Prize',
+        '₦1,000,000 Cash Prize',
         'Media Publicity Tour',
         '5 Jerseys',
         '20 Event Access Cards'
@@ -209,7 +209,7 @@ const PackageSelection: React.FC<PackageSelectionProps> = ({ onPackageSelect }) 
       ],
       prizes: [
         'Golden Trophy',
-        '₦5,000,000 Cash Reward',
+        '₦2,000,000 Cash Reward',
         'Media Publicity Tour',
         '15 Jerseys',
         '40 Event Access Cards'
@@ -228,7 +228,7 @@ const PackageSelection: React.FC<PackageSelectionProps> = ({ onPackageSelect }) 
       prizes: [
         'Golden Trophy',
         'Golden Medal 🏅',
-        '₦8,000,000 Cash Prize',
+        '₦2,000,000 Cash Prize',
         'Media Publicity Tour',
         '20 Jerseys',
         '60 Event Access Cards'
@@ -291,7 +291,7 @@ const PackageSelection: React.FC<PackageSelectionProps> = ({ onPackageSelect }) 
               <PackageHeader>
                 <div className="icon">{pkg.icon}</div>
                 <h3>{pkg.name}</h3>
-                <div className="price">₦{(pkg.price / 1000).toLocaleString()}K</div>
+                <div className="price">₦{pkg.price >= 1000000 ? `${(pkg.price / 1000000).toLocaleString()}M` : `${(pkg.price / 1000).toLocaleString()}K`}</div>
                 <div className="subtitle">Application Fee</div>
               </PackageHeader>
 

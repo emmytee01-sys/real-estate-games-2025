@@ -1,7 +1,7 @@
 // API Configuration for different environments
 const API_BASE_URL = process.env.NODE_ENV === 'production' 
   ? 'https://real-estate-games-api.onrender.com/api'
-  : '/api';
+  : 'https://real-estate-games-api.onrender.com/api';
 
 export const API_ENDPOINTS = {
   // Admin endpoints

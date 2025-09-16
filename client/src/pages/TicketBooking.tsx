@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import styled from 'styled-components';
 import { toast } from 'react-hot-toast';
 import { 
   User, 
-  Mail, 
-  Phone, 
   Building, 
   Calendar, 
   MessageSquare,
   CheckCircle,
-  Download,
   Ticket
 } from 'lucide-react';
 
@@ -76,7 +71,7 @@ const TicketBooking: React.FC = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: {},
     watch,
   } = useForm<TicketFormData>({
     mode: 'onChange',
@@ -563,7 +558,7 @@ const TicketBooking: React.FC = () => {
                 Which Day(s) Will You Attend?
               </div>
               
-              {['Saturday, October 18', 'Sunday, October 19', 'Both Days'].map((day) => (
+              {['Saturday, October 24', 'Sunday, October 25', 'Both Days'].map((day) => (
                 <label key={day} style={{
                   display: 'flex',
                   alignItems: 'center',

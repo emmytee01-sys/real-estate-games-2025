@@ -371,7 +371,7 @@ const Home: React.FC = () => {
     },
     {
       icon: <Trophy size={32} />,
-      value: "10M Naira",
+      value: "5M Naira",
       label: "Cash Prize Pool"
     }
   ];
