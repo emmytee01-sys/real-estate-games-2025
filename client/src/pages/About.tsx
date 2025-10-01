@@ -409,6 +409,7 @@ const About: React.FC = () => {
       icon: <TrendingUp size={24} />,
       title: "Create Maximum Buzz",
       text: "Generate excitement across Nigeria's business, lifestyle, and sports media"
+      
     },
     {
       icon: <Award size={24} />,

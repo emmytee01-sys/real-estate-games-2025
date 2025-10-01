@@ -11,6 +11,7 @@ import {
   CheckCircle,
   Ticket
 } from 'lucide-react';
+import { API_ENDPOINTS } from '../config/api';
 
 const TicketBookingContainer = styled.div`
   min-height: 100vh;
@@ -113,7 +114,7 @@ const TicketBooking: React.FC = () => {
       };
 
       // Call backend API
-      const response = await fetch('/api/tickets', {
+      const response = await fetch(API_ENDPOINTS.TICKETS, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

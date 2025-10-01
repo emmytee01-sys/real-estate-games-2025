@@ -356,7 +356,7 @@ const Home: React.FC = () => {
   const eventDetails = [
     {
       icon: <Calendar size={32} />,
-      value: "17th & 18th",
+      value: "24th & 25th",
       label: "24th & 25th October 2025"
     },
     {
