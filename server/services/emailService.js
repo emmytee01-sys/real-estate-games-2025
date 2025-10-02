@@ -14,7 +14,15 @@ if (process.env.EMAIL_SERVICE === 'gmail') {
     },
     tls: {
       rejectUnauthorized: false
-    }
+    },
+    connectionTimeout: 60000, // 60 seconds
+    greetingTimeout: 30000,    // 30 seconds
+    socketTimeout: 60000,      // 60 seconds
+    pool: true,
+    maxConnections: 5,
+    maxMessages: 100,
+    rateDelta: 20000,
+    rateLimit: 5
   });
 } else {
   // Try Outlook with modern settings
@@ -430,24 +438,36 @@ const emailTemplates = {
   })
 };
 
-// Send email function
-const sendEmail = async (to, template, data) => {
-  try {
-    const emailContent = emailTemplates[template](data);
-    
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: to,
-      subject: emailContent.subject,
-      html: emailContent.html
-    };
-    
-    const result = await transporter.sendMail(mailOptions);
-    console.log('✅ Email sent successfully:', result.messageId);
-    return result;
-  } catch (error) {
-    console.error('❌ Email sending failed:', error);
-    throw error;
+// Send email function with retry logic
+const sendEmail = async (to, template, data, retries = 3) => {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const emailContent = emailTemplates[template](data);
+      
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: to,
+        subject: emailContent.subject,
+        html: emailContent.html
+      };
+      
+      console.log(`📧 Attempting to send email (attempt ${attempt}/${retries}) to: ${to}`);
+      const result = await transporter.sendMail(mailOptions);
+      console.log('✅ Email sent successfully:', result.messageId);
+      return result;
+    } catch (error) {
+      console.error(`❌ Email sending failed (attempt ${attempt}/${retries}):`, error.message);
+      
+      if (attempt === retries) {
+        console.error('❌ All email attempts failed, giving up');
+        throw error;
+      }
+      
+      // Wait before retrying (exponential backoff)
+      const delay = Math.pow(2, attempt) * 1000; // 2s, 4s, 8s
+      console.log(`⏳ Waiting ${delay}ms before retry...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
   }
 };
 

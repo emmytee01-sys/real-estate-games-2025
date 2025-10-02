@@ -1,5 +1,5 @@
 // API Configuration for different environments
-const API_BASE_URL = 'http://localhost:5001/api';
+const API_BASE_URL = 'https://real-estate-games-api.onrender.com/api';
 
 export const API_ENDPOINTS = {
   // Admin endpoints
